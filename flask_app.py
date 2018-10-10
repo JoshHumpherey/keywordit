@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, session
 import os
 import collections
 import praw
+
 app = Flask(__name__)
 secret_key = str(os.urandom(24))
 app.secret_key = secret_key
@@ -14,8 +15,10 @@ def hello():
 def my_form_post():
     url = request.form['Reddit URL']
     search_term = request.form['Keyword']
-    output = find_relevant_comments(url, search_term)
+    top_comment_list = find_relevant_comments(url, search_term)
+    output = get_comment_text(top_comment_list)
     return render_template('mainpage.html', output = output)
+
 def find_relevant_comments(url, search_term):
     CREDENTIALS = []
     with open(".gitignore") as f:
@@ -37,16 +40,22 @@ def find_relevant_comments(url, search_term):
     return result_dict
 
 def return_comment_list(submission, keyword):
-    comment_dict = collections.defaultdict(list)
+    comment_list = []
     try:
-        for top_level_comment in submission.comments:
-            if keyword in top_level_comment.body:
-                all_replies = top_level_comment.replies
-                for comment in all_replies:
-                    comment_dict[top_level_comment.body].append(comment.body)
-        return comment_dict
+        for top_comment in submission.comments:
+            if keyword in top_comment.body:
+                comment_list.append(top_comment)
+        return comment_list
     except:
         return "Error while parsing comments"
+
+def get_comment_text(comment_list):
+    expanded_comments = []
+    if len(comment_list) == 0:
+        return "No Comments Meet Search Criteria"
+    for comment in comment_list:
+        expanded_comments.append(comment.body)
+    return expanded_comments
 
 if __name__ == "__main__":
     app.run()

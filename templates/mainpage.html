@@ -2,39 +2,33 @@
 <html>
 <title>keywordit</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<style>
-body,h1 {font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-.bgimg {
-    background-image: url('/static/main_background.jpg');
-    min-height: 100%;
-    background-position: center;
-    background-size: cover;
-}
-</style>
-<body>
+<link rel="stylesheet" href="static/style.css">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<body class="bgimg">
 
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-topleft w3-padding-large w3-xlarge">
+<div>
+  <div class="logo">
      <img src="/static/git_logo.png" alt="Github Logo" height="42" width="42">
   </div>
-  <div class="w3-display-middle" style="bottom:0px">
-    <h1 class="w3-jumbo w3-animate-top">keywordit</h1>
-    <hr class="w3-border-grey" style="margin:auto;width:40%">
-    <p class="w3-large w3-center">CTR-F For The Upper Class</p>
+
+  <div class="main_title" >
+    <h1 class="main_title">keywordit</h1>
+    <hr class="main_title">
+    <p class="main_title">CTR-F For The Upper Class</p>
   </div>
-  <div align="" class="w3-display-middle" style="bottom:5000px">
+  <div align="middle" class="w3-display-middle" style="bottom:5000px">
       <form method="POST" align="right">
-          <input name="Reddit URL" type="text" align="right">
-          <input name="Keyword" type="text" align="right">
-          <input type="submit" align="right">
+          <input name="Reddit URL" type="text" align="middle">
+          <input name="Keyword" type="text" align="middle">
+          <input type="submit" align="middle">
       </form>
   </div>
-  <div>
-      <p>{{ output }}</p>
+  <div align="middle" style="bottom:10000px">
+      {% for top_level_comment in output %}
+      <div>
+          {{top_level_comment}}
+      </div>
+     {% endfor %}
   </div>
   <div class="w3-display-bottomleft w3-padding-large">
     Contribute on <a href="https://github.com/JoshHumpherey/keywordit" target="_blank">Github</a>
