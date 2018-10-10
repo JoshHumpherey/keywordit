@@ -19,8 +19,20 @@
 }
 
 .logo {
+    position: relative;
+    left: 5px;
+    top: 5px;
+}
+.bottom {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+.parent {
     font-family: "Raleway", sans-serif;
-    padding: 15px;
-    margin: auto;
-    width: 50%;
+    text-align: left;
+    position: relative;
+    top: 10px;
+    left: 30px;
+    color: white;
 }

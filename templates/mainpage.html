@@ -2,13 +2,13 @@
 <html>
 <title>keywordit</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 <body class="bgimg">
 
 <div>
   <div class="logo">
-     <img src="/static/git_logo.png" alt="Github Logo" height="42" width="42">
+     <img src="/static/git_logo.png" alt="Github Logo" height="60" width="60">
   </div>
 
   <div class="main_title" >
@@ -23,14 +23,14 @@
           <input type="submit" align="middle">
       </form>
   </div>
-  <div align="middle" style="bottom:10000px">
+  <div align="middle" class="parent">
       {% for top_level_comment in output %}
       <div>
           {{top_level_comment}}
       </div>
      {% endfor %}
   </div>
-  <div class="w3-display-bottomleft w3-padding-large">
+  <div class="bottom">
     Contribute on <a href="https://github.com/JoshHumpherey/keywordit" target="_blank">Github</a>
   </div>
 </div>
