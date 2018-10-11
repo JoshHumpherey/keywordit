@@ -16,17 +16,22 @@
     <hr>
     <p class="secondary_title">CTR-F For The Upper Class</p>
   </div>
-  <div align="middle" class="w3-display-middle" style="bottom:5000px">
-      <form method="POST" align="right">
-          <input name="Reddit URL" type="text" align="middle">
-          <input name="Keyword" type="text" align="middle">
-          <input type="submit" align="middle">
+  <div class="center">
+      <form method="POST" class="center">
+          <input name="Reddit URL" type="text" class="center" placeholder="Reddit URL">
+          <input name="Keyword" type="text" class="center" placeholder="Keyword">
+          <input type="submit" class="center">
       </form>
   </div>
   <div align="middle" class="parent">
       {% for top_level_comment in output %}
       <li class="parent">
-          {{top_level_comment}}
+          {{top_level_comment[0]}}
+          {% for reply in top_level_comment[1] %}
+            <li class="reply">
+                {{reply}}
+            </li>
+          {% endfor %}
       </li>
      {% endfor %}
   </div>

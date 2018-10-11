@@ -1,3 +1,6 @@
+form {
+    display: inline-block;
+}
 
 .bgimg {
     height: 100%;
@@ -19,6 +22,13 @@
     font-size: 250%;
 }
 
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+}
+
 .secondary_title {
     font-family: "Raleway", sans-serif;
     text-align: center;
@@ -33,11 +43,7 @@
     left: 5px;
     top: 5px;
 }
-.bottom {
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
-}
+
 .parent {
     font-family: "Raleway", sans-serif;
     text-align: left;
@@ -48,5 +54,19 @@
     color: white;
     padding-top: 25px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 100px;
+    padding-bottom: 25px;
+}
+.reply {
+    font-family: "Raleway", sans-serif;
+    text-align: left;
+    position: relative;
+    font-size: 110%;
+    top: 15px;
+    left: 70px;
+    color: white;
+    padding-top: 5px;
+    padding-left: 60px;
+    padding-right: 100px;
+    padding-bottom: 5px;
 }

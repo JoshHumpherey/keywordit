@@ -31,11 +31,11 @@ def find_relevant_comments(url, search_term):
         reddit = praw.Reddit(user_agent='Comment Extraction via keywordit',
                              client_id=CREDENTIALS[0], client_secret=CREDENTIALS[1])
     except:
-        return ["Invalid Session Information"]
+        return [("Invalid Session Information", [])]
     try:
         submission = reddit.submission(url=str(url))
     except:
-        return "Invalid URL"
+        return [("Invalid URL", [])]
     result_dict = return_comment_list(submission, search_term)
     return result_dict
 
@@ -47,15 +47,20 @@ def return_comment_list(submission, keyword):
                 comment_list.append(top_comment)
         return comment_list
     except:
-        return ["Error while parsing comments"]
+        return [("Error while parsing comments", [])]
 
 def get_comment_text(comment_list):
     expanded_comments = []
-    if len(comment_list) == 0:
-        return ["No Comments Meet Search Criteria"]
-    for comment in comment_list:
-        expanded_comments.append(comment.body)
-    return expanded_comments
+    try:
+        for top_comment in comment_list:
+            other_comments = []
+            for comment in top_comment.replies:
+                other_comments.append(comment.body)
+            thread = (top_comment.body, other_comments)
+            expanded_comments.append(thread)
+        return expanded_comments
+    except:
+        return [("No Comments Meet Search Criteria", [])]
 
 if __name__ == "__main__":
     app.run()
