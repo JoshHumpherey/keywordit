@@ -21,11 +21,9 @@ def my_form_post():
 
 def find_relevant_comments(url, search_term):
     CREDENTIALS = []
-    with open(".gitignore") as f:
+    with open("credentials.txt") as f:
         content = f.readlines()
         for item in content:
-            item_len = len(item)
-            item = str(item[0:item_len-1])
             CREDENTIALS.append(item)
     try:
         reddit = praw.Reddit(user_agent='Comment Extraction via keywordit',
