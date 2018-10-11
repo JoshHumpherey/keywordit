@@ -16,8 +16,8 @@ def my_form_post():
     url = request.form['Reddit URL']
     search_term = request.form['Keyword']
     top_comment_list = find_relevant_comments(url, search_term)
-    output = get_comment_text(top_comment_list)
-    return render_template('mainpage.html', output = output)
+    parent = get_comment_text(top_comment_list)
+    return render_template('mainpage.html', output = parent)
 
 def find_relevant_comments(url, search_term):
     CREDENTIALS = []
@@ -31,7 +31,7 @@ def find_relevant_comments(url, search_term):
         reddit = praw.Reddit(user_agent='Comment Extraction via keywordit',
                              client_id=CREDENTIALS[0], client_secret=CREDENTIALS[1])
     except:
-        return "Invalid Session Information"
+        return ["Invalid Session Information"]
     try:
         submission = reddit.submission(url=str(url))
     except:
@@ -47,12 +47,12 @@ def return_comment_list(submission, keyword):
                 comment_list.append(top_comment)
         return comment_list
     except:
-        return "Error while parsing comments"
+        return ["Error while parsing comments"]
 
 def get_comment_text(comment_list):
     expanded_comments = []
     if len(comment_list) == 0:
-        return "No Comments Meet Search Criteria"
+        return ["No Comments Meet Search Criteria"]
     for comment in comment_list:
         expanded_comments.append(comment.body)
     return expanded_comments

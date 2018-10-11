@@ -7,14 +7,14 @@
 <body class="bgimg">
 
 <div>
-  <div class="logo">
+  <a class="logo" href="https://github.com/JoshHumpherey/keywordit">
      <img src="/static/git_logo.png" alt="Github Logo" height="60" width="60">
-  </div>
+  </a>
 
   <div class="main_title" >
     <h1 class="main_title">keywordit</h1>
-    <hr class="main_title">
-    <p class="main_title">CTR-F For The Upper Class</p>
+    <hr>
+    <p class="secondary_title">CTR-F For The Upper Class</p>
   </div>
   <div align="middle" class="w3-display-middle" style="bottom:5000px">
       <form method="POST" align="right">
@@ -25,13 +25,10 @@
   </div>
   <div align="middle" class="parent">
       {% for top_level_comment in output %}
-      <div>
+      <li class="parent">
           {{top_level_comment}}
-      </div>
+      </li>
      {% endfor %}
-  </div>
-  <div class="bottom">
-    Contribute on <a href="https://github.com/JoshHumpherey/keywordit" target="_blank">Github</a>
   </div>
 </div>
 
